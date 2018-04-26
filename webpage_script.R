@@ -13,7 +13,11 @@ library(raster)
 
 
 
-setwd("C:/project/data")
+# Set working directory to the folder containing this script:
+# (assumes you use R studio)
+basedir <- dirname(rstudioapi::getActiveDocumentContext()$path)
+setwd(paste(basedir, "data", sep=.Platform$file.sep))
+
 
 file_list <- gsub("\\.csv$","", list.files(pattern="\\.csv$"))
 
@@ -21,7 +25,7 @@ file_list = list.files(pattern="*.csv")
 
 data_list <- vector("list", "length" = length(file_list))
 
-dir = "C:/project/new"
+dir = paste(basedir, "new", sep=.Platform$file.sep)
 
 for (i in seq_along(file_list)) {
   filename = file_list[[i]]
@@ -75,7 +79,7 @@ weather_data_full <- weather_data <- NULL
 data_list <- NULL 
 lanlongcity <- NULL
 weather_specific <- NULL
-setwd("C:/project/raster")
+setwd(paste(basedir, "raster", sep=.Platform$file.sep))
 
 
 # Define UI ----
@@ -264,7 +268,7 @@ server <- function(input, output) {
                        stroke = TRUE,
                        fillOpacity = 0.8,
                        group="Weather Stations",
-                      label = ~ as.character(Temperature...2.m.above.gnd.) 
+                       label = ~ as.character(Temperature...2.m.above.gnd.) 
                        
       ) %>%
       addRasterImage(rasterDF,
