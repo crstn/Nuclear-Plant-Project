@@ -268,7 +268,7 @@ server <- function(input, output) {
                        stroke = TRUE,
                        fillOpacity = 0.8,
                        group="Weather Stations",
-                       label = ~ as.character(Temperature...2.m.above.gnd.) 
+                       label = ~ as.character(weather[[input[["var1"]]]]) 
                        
       ) %>%
       addRasterImage(rasterDF,
